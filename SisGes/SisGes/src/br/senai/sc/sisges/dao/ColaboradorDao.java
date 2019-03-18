@@ -19,10 +19,10 @@ public class ColaboradorDao extends ConnectionFactory {
     public void inserir(Colaborador col) throws SQLException {
 
         String sql = "insert into colaborador "
-                + "(nomCol, endCol, numCol "
-                + "baiCol, cepCol, comCol, cpfC, "
+                + "(nomCol, endCol, numCol, "
+                + "baiCol, cepCol, comCol, cpfCol, "
                 + "celCol, tipoCol,usuCol, senCol, equCol, dddCol) "
-                + "values (?, ?, ?, ?, ?, ?, ?, ? ,? ,? , ?, ?, ?, ?);";
+                + "values (?, ?, ?, ?, ?, ?, ?, ? ,? ,? , ?, ?, ?);";
 
         try (PreparedStatement st = this.con.prepareStatement(sql)) {
             st.setString(1, col.getNomCol());
@@ -102,21 +102,21 @@ public class ColaboradorDao extends ConnectionFactory {
 
             while (rs.next()) {
                 Colaborador c = new Colaborador();
-                c.setIdCol(rs.getInt("idCol"));
+                c.setIdCol(rs.getLong("idCol"));
                 c.setNomCol(rs.getString("nomCol"));
                 c.setEndCol(rs.getString("endCol"));
                 c.setNumCol(rs.getLong("numCol"));
                 c.setBaiCol(rs.getString("baiCol"));
-                c.setCepCol(rs.getInt("cepCol"));
+                c.setCepCol(rs.getLong("cepCol"));
                 c.setComCol(rs.getString("comCol"));
-                c.setCpfCol(rs.getInt("cpfCol"));
-                c.setCelCol(rs.getInt("celCol"));
+                c.setCpfCol(rs.getLong("cpfCol"));
+                c.setCelCol(rs.getLong("celCol"));
                 c.setTipoCol(rs.getString("tipoCol"));
                 c.setUsuCol(rs.getString("usuCol"));
                 c.setSenCol(rs.getString("senCol"));
                 c.setUltAcCol(rs.getString("ultAcCol"));
                 c.setEquCol(rs.getString("equCol"));
-                c.setDddCol(rs.getInt("dddCol"));
+                c.setDddCol(rs.getLong("dddCol"));
                 colaboradores.add(c);
             }
 
@@ -139,21 +139,21 @@ public class ColaboradorDao extends ConnectionFactory {
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
                     col = new Colaborador();
-                     col.setIdCol(rs.getInt("idCol"));
+                     col.setIdCol(rs.getLong("idCol"));
                 col.setNomCol(rs.getString("nomCol"));
                 col.setEndCol(rs.getString("endCol"));
                 col.setNumCol(rs.getLong("numCol"));
                 col.setBaiCol(rs.getString("baiCol"));
-                col.setCepCol(rs.getInt("cepCol"));
+                col.setCepCol(rs.getLong("cepCol"));
                 col.setComCol(rs.getString("comCol"));
-                col.setCpfCol(rs.getInt("cpfCol"));
-                col.setCelCol(rs.getInt("celCol"));
+                col.setCpfCol(rs.getLong("cpfCol"));
+                col.setCelCol(rs.getLong("celCol"));
                 col.setTipoCol(rs.getString("tipoCol"));
                 col.setUsuCol(rs.getString("usuCol"));
                 col.setSenCol(rs.getString("senCol"));
                 col.setUltAcCol(rs.getString("ultAcCol"));
                 col.setEquCol(rs.getString("equCol"));
-                col.setDddCol(rs.getInt("dddCol"));
+                col.setDddCol(rs.getLong("dddCol"));
                 }
             }
             st.close();
@@ -162,5 +162,32 @@ public class ColaboradorDao extends ConnectionFactory {
         this.con.close();
         return col;
     }
+    
+    public Colaborador getColaborador(int codcli) throws SQLException {
+        String sql = "select * from colaborador where idCol = ?";
+        Colaborador colaborador = null;
 
+        try (PreparedStatement st = this.con.prepareStatement(sql)) {
+            st.setInt(1, codcli);
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    colaborador = new Colaborador();
+                    colaborador.setIdCol(rs.getInt("idCol"));
+                    colaborador.setNomCol(rs.getString("nomCol"));
+                    colaborador.setEndCol(rs.getString("endCol"));
+                    colaborador.setBaiCol(rs.getString("baiCol"));
+                    colaborador.setComCol(rs.getString("comCol"));
+                    colaborador.setCepCol(rs.getLong("cepCol"));
+                    colaborador.setCelCol(rs.getLong("celCol"));
+                    colaborador.setCpfCol(rs.getLong("cpfCol"));
+              
+                }
+            }
+            st.close();
+            
+        }
+        this.con.close();
+        return colaborador;
+
+}
 }
