@@ -116,7 +116,18 @@ public class CadastroDeEquipe extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        Equipe Equ = new Equipe();
+        Equ.setNomEqu(cpNomeEquipe.getText());
+        Equ.setDesEqu(cpDescricaoEquipe.getText());
+        
+        EquipeDao equDao = new EquipeDao();
+        try {
+            equDao.inserir(Equ);
+            JOptionPane.showMessageDialog(null, "Equipe inserida com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Falha ao inserir equipe!");
+            Logger.getLogger(CadastroDeEquipe.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void cpNomeEquipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpNomeEquipeActionPerformed

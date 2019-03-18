@@ -5,7 +5,9 @@
  */
 package br.senai.sc.sisges.jframe;
 
+import br.senai.sc.sisges.views.CadastroAgenda;
 import br.senai.sc.sisges.views.CadastroColaborador;
+import br.senai.sc.sisges.views.CadastroDeEquipe;
 import br.senai.sc.sisges.views.ListagemColaborador;
 import br.senai.sc.sisges.views.ListagemEquipe;
 import br.senai.sc.sisges.views.TelaLogin;
@@ -28,11 +30,15 @@ public class SisgesjFrame extends javax.swing.JFrame {
         //Cria os componentes
         CadastroColaborador cadCol = new CadastroColaborador();
         TelaLogin tp = new TelaLogin();
-        
+        CadastroDeEquipe cadEqu = new CadastroDeEquipe();
+        ListagemEquipe lEqu = new ListagemEquipe();
+        CadastroAgenda cAge = new CadastroAgenda();
 
         painelPrincipal.add(cadCol, "cadastroColaborador");
         painelPrincipal.add(tp, "telaPadrao");
-        
+        painelPrincipal.add(cadEqu, "cadastroEquipe");
+        painelPrincipal.add(lEqu, "listarEquipe");
+        painelPrincipal.add(cAge, "cadastroAgenda");
 
         //Chamar a tela padrão aqui
         CardLayout cl = (CardLayout) painelPrincipal.getLayout();
@@ -157,15 +163,13 @@ public class SisgesjFrame extends javax.swing.JFrame {
 
     private void menCadastrarEquipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadastrarEquipeActionPerformed
         CardLayout cl = (CardLayout) painelPrincipal.getLayout();
-        
+         cl.show(painelPrincipal, "cadastroEquipe");
     }//GEN-LAST:event_menCadastrarEquipeActionPerformed
 
     private void menListarEquipesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menListarEquipesActionPerformed
-        ListagemEquipe le = new ListagemEquipe();
-        painelPrincipal.add(le, "listaEquipe");
-        
+         
         CardLayout cl = (CardLayout) painelPrincipal.getLayout(); 
-        cl.show(painelPrincipal, "listaEquipe");
+        cl.show(painelPrincipal, "listarEquipe");
         
         
     }//GEN-LAST:event_menListarEquipesActionPerformed
