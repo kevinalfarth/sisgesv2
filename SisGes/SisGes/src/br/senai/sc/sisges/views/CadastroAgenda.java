@@ -185,10 +185,10 @@ public class CadastroAgenda extends javax.swing.JPanel {
       AgendaDao ageDao = new AgendaDao();
         try {
             ageDao.inserir(ag);
-            JOptionPane.showMessageDialog(null, "Funcionário inserido com sucesso !");
+            JOptionPane.showMessageDialog(null, "Tarefa inserida com sucesso !");
         } catch (SQLException ex) {
             Logger.getLogger(CadastroColaborador.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Falha ao inserir Funcionário !");
+            JOptionPane.showMessageDialog(null, "Falha ao inserir tarefa !");
 
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed

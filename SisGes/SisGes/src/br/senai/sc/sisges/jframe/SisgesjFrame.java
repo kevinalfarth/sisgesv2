@@ -8,6 +8,7 @@ package br.senai.sc.sisges.jframe;
 import br.senai.sc.sisges.views.CadastroAgenda;
 import br.senai.sc.sisges.views.CadastroColaborador;
 import br.senai.sc.sisges.views.CadastroDeEquipe;
+import br.senai.sc.sisges.views.ListagemAgenda;
 import br.senai.sc.sisges.views.ListagemColaborador;
 import br.senai.sc.sisges.views.ListagemEquipe;
 import br.senai.sc.sisges.views.TelaLogin;
@@ -33,12 +34,14 @@ public class SisgesjFrame extends javax.swing.JFrame {
         CadastroDeEquipe cadEqu = new CadastroDeEquipe();
         ListagemEquipe lEqu = new ListagemEquipe();
         CadastroAgenda cAge = new CadastroAgenda();
+        ListagemAgenda lAge = new ListagemAgenda();
 
         painelPrincipal.add(cadCol, "cadastroColaborador");
         painelPrincipal.add(tp, "telaPadrao");
         painelPrincipal.add(cadEqu, "cadastroEquipe");
         painelPrincipal.add(lEqu, "listarEquipe");
         painelPrincipal.add(cAge, "cadastroAgenda");
+        painelPrincipal.add(lAge, "listarAgenda");
 
         //Chamar a tela padrão aqui
         CardLayout cl = (CardLayout) painelPrincipal.getLayout();
@@ -100,6 +103,11 @@ public class SisgesjFrame extends javax.swing.JFrame {
         menAgenda.setText("Agenda");
 
         menCadastrarProduto.setText("Consultar agenda");
+        menCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menCadastrarProdutoActionPerformed(evt);
+            }
+        });
         menAgenda.add(menCadastrarProduto);
 
         menListarProduto.setText("Adicionar Tarefa");
@@ -175,8 +183,14 @@ public class SisgesjFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_menListarEquipesActionPerformed
 
     private void menListarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menListarProdutoActionPerformed
-        // TODO add your handling code here:
+        CardLayout cl = (CardLayout) painelPrincipal.getLayout(); 
+        cl.show(painelPrincipal, "cadastroAgenda");
     }//GEN-LAST:event_menListarProdutoActionPerformed
+
+    private void menCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadastrarProdutoActionPerformed
+       CardLayout cl = (CardLayout) painelPrincipal.getLayout(); 
+        cl.show(painelPrincipal, "listarAgenda");
+    }//GEN-LAST:event_menCadastrarProdutoActionPerformed
 
     /**
      * @param args the command line arguments

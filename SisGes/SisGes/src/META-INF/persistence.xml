@@ -3,6 +3,8 @@
   <persistence-unit name="sis_ges?zeroDateTimeBehavior=convertToNullPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.senai.sc.sisges.views.Colaborador</class>
+    <class>br.senai.sc.sisges.views.Equipe</class>
+    <class>br.senai.sc.sisges.views.Agenda</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sis_ges?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
